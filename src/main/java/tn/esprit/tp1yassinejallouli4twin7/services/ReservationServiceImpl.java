@@ -1,12 +1,14 @@
 package tn.esprit.tp1yassinejallouli4twin7.services;
 
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Reservation;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
 
 import java.util.List;
 
+@Primary
 @AllArgsConstructor
 @Service
 public class ReservationServiceImpl implements IReservationService{

@@ -7,18 +7,18 @@ import lombok.Setter;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.Set;
-
+@Setter
+@Getter
 @Entity
 public class Reservation implements Serializable {
-    @Setter
-    @Getter
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
 
     @ManyToMany(mappedBy = "reservations")
     private Set<Etudiant> etudiants;
 
-    private Date dateNaissance;
+    private Date dateReservation;
 
     private boolean estValid ;
 

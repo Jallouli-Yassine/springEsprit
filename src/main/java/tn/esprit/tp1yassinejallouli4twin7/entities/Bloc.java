@@ -6,11 +6,10 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Set;
-
+@Setter
+@Getter
 @Entity
 public class Bloc implements Serializable {
-    @Setter
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idBloc;

@@ -5,11 +5,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
-
+@Setter
+@Getter
 @Entity
 public class Universite implements Serializable {
-    @Setter
-    @Getter
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idUniversite;

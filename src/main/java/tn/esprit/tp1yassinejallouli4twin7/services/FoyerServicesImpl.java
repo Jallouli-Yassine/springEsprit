@@ -1,12 +1,13 @@
 package tn.esprit.tp1yassinejallouli4twin7.services;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 
 import java.util.List;
-
+@Primary
 //@AllArgsConstructor //2eme methode mta injec de dependance  w asah wahda ( nahi l final )
 @RequiredArgsConstructor //2eme lezem el final mawjouda
 @Service
