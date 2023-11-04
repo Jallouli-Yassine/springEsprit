@@ -10,4 +10,5 @@ public interface IFoyerServices {
     void supprimerFoyer(long idFoyer);
     Foyer getFoyer(long idFoyer);
     List<Foyer> getAllFoyer();
+
 }

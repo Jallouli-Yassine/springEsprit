@@ -1,5 +1,6 @@
 package tn.esprit.tp1yassinejallouli4twin7.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class Universite implements Serializable {
     private long idUniversite;
 
     @OneToOne
+    @JsonIgnore
     private Foyer foyer;
 
     private String nomUniversite;

@@ -1,12 +1,14 @@
 package tn.esprit.tp1yassinejallouli4twin7.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Reservation;
 import tn.esprit.tp1yassinejallouli4twin7.services.IFoyerServices;
 import tn.esprit.tp1yassinejallouli4twin7.services.IReservationService;
 
+import java.util.Date;
 import java.util.List;
 
 @RequiredArgsConstructor //2eme lezem el final mawjouda
@@ -33,6 +35,14 @@ public class ReservationRestController {
     @DeleteMapping ("/delete/{idReservation}")
     public void deleteReservation(@PathVariable Long idReservation){
         reservationService.supprimerReservation(idReservation);
+    }
+    @PutMapping("/ajouterReservationEtAssignerAChambreEtAEtudiant/{numChambre}/{cin}")
+    public Reservation ajouterReservationEtAssignerAChambreEtAEtudiantAPI (@RequestBody Reservation res,@PathVariable Long numChambre,@PathVariable long cin){
+       return reservationService.ajouterReservationEtAssignerAChambreEtAEtudiant(res,numChambre,cin);
+    }
+    @GetMapping("/getReservationParAnneeUniversitaire/{debutAnnee}/{finAnnee}")
+    public long getReservationParAnneeUniversitaireApi(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date debutAnnee,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date finAnnee ){
+       return reservationService.getReservationParAnneeUniversitaire(debutAnnee,finAnnee);
     }
 
 

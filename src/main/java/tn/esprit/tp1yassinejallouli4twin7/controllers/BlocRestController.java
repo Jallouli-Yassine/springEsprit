@@ -3,11 +3,12 @@ package tn.esprit.tp1yassinejallouli4twin7.controllers;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Bloc;
+import tn.esprit.tp1yassinejallouli4twin7.entities.Universite;
 import tn.esprit.tp1yassinejallouli4twin7.services.IBlocService;
 
 import java.util.List;
 
-@RequiredArgsConstructor //2eme lezem el final mawjouda
+@RequiredArgsConstructor
 @RequestMapping("bloc")
 @RestController
 public class BlocRestController {
@@ -33,5 +34,16 @@ public class BlocRestController {
     public void deleteBloc(@PathVariable Long idBloc){
         blocService.supprimerBloc(idBloc);
     }
+
+
+    @PutMapping("/affecterChambresABloc/{nomBloc}")
+    public Bloc affecterChambresABloc(@RequestBody List<Long> numChambre, @PathVariable String nomBloc) {
+        return blocService.affecterChambresABloc(numChambre,nomBloc);
+    }
+    @PutMapping("/affecterBlocAFoyerApi/{nomBloc}/{nomFoyer}")
+    public Bloc affecterBlocAFoyerApi( @PathVariable String nomBloc,@PathVariable String nomFoyer){
+        return blocService.affecterBlocAFoyer(nomBloc,nomFoyer);
+    }
+
 
 }

@@ -35,4 +35,15 @@ public class UniversiteRestController {
         universiteService.supprimerUniversite(idUniversite);
     }
 
+    @PutMapping("/affecterFoyerAUniversite/{idFoyer}/{nomUniversite}")
+    public Universite affecterFoyerAUniversite (@PathVariable long idFoyer,@PathVariable String nomUniversite) {
+        return universiteService.affecterFoyerAUniversite(idFoyer,nomUniversite);
+    }
+    @PutMapping("/desaffecterFoyerAUniversite/{idFoyer}/{idUniversite}")
+    public Universite desaffecterFoyerAUniversite (@PathVariable long idFoyer,@PathVariable long idUniversite) {
+        return universiteService.desaffecterFoyerAUniversite(idFoyer,idUniversite);
+    }
+
+
+
 }

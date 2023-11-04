@@ -1,6 +1,7 @@
 package tn.esprit.tp1yassinejallouli4twin7.controllers;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 import tn.esprit.tp1yassinejallouli4twin7.services.IFoyerServices;
@@ -12,6 +13,11 @@ import java.util.List;
 @RestController
 public class FoyerRestController {
     private final IFoyerServices foyerServices;
+
+    @GetMapping("/getOne/{idFoyer}")
+    public Foyer getFoyer(@PathVariable Long idFoyer){
+        return foyerServices.getFoyer(idFoyer);
+    }
 
     @GetMapping("/all")
     public List<Foyer> getAllFoyer(){

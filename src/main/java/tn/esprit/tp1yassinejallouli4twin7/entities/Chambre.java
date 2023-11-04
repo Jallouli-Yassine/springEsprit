@@ -1,5 +1,6 @@
 package tn.esprit.tp1yassinejallouli4twin7.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -13,10 +14,10 @@ public class Chambre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idChambre;
-
+    @JsonIgnore
     @ManyToOne
     private Bloc bloc;
-
+    @JsonIgnore
     @OneToMany
     Set<Reservation> reservations;
 

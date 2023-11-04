@@ -1,5 +1,6 @@
 package tn.esprit.tp1yassinejallouli4twin7.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class Etudiant implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idEtudiant;
 
+    @JsonIgnore
     @ManyToMany
     private Set <Reservation> reservations;
 

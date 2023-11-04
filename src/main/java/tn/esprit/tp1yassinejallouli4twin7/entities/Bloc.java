@@ -1,5 +1,6 @@
 package tn.esprit.tp1yassinejallouli4twin7.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,11 +15,15 @@ public class Bloc implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idBloc;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "bloc")
     Set <Chambre> chambres;
 
+
     @ManyToOne
+    @JsonIgnore
     private Foyer foyer;
+
     private String nomBloc;
 
     private long capaciteBloc;

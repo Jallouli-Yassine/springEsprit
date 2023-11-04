@@ -2,9 +2,13 @@ package tn.esprit.tp1yassinejallouli4twin7.services;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import tn.esprit.tp1yassinejallouli4twin7.entities.Chambre;
+import tn.esprit.tp1yassinejallouli4twin7.entities.*;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -12,6 +16,9 @@ import java.util.List;
 public class ChambreServiceImpl implements IChambreService{
 
     IChambreRepo chambreRepo;
+    IBlocRepo blocRepo;
+    IFoyerRepo foyerRepo;
+    IReservationRepo reservationRepo;
 
     @Override
     public Chambre ajouterChambre(Chambre ch) {
@@ -37,4 +44,35 @@ public class ChambreServiceImpl implements IChambreService{
     public List<Chambre> getAllChambres() {
         return (List<Chambre>) chambreRepo.findAll();
     }
+
+    @Override
+    public List<Chambre> getChambresParNomBloc(String nomBloc) {
+        Bloc b = blocRepo.findBlocByNomBloc(nomBloc);
+        return new ArrayList<>(b.getChambres());
+    }
+
+    @Override
+    public long nbChambreParTypeEtBloc(TypeChambre type, long idBloc) {
+        Bloc b = blocRepo.findById(idBloc).orElse(null);
+        int nb=0;
+        for(Chambre ch :b.getChambres())
+            if(ch.getTypeC()==type) nb++;
+        return nb;
+    }
+
+    @Override
+    public List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre(String nomFoyer, TypeChambre type) {
+        Foyer f = foyerRepo.findFoyerByNomFoyer(nomFoyer);
+
+        List<Chambre> NonResChambreList = new  ArrayList<>();
+        f.getBlocs().forEach(bloc -> {
+            bloc.getChambres().forEach(chambre -> {
+                if (chambre.getTypeC()==type && chambre.getReservations().isEmpty()){
+                    NonResChambreList.add(chambre);
+                }
+            });
+        });
+        return NonResChambreList;
+    }
+
 }

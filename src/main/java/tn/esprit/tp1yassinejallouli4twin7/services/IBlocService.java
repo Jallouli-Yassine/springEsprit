@@ -10,4 +10,8 @@ public interface IBlocService {
     void supprimerBloc(long idBloc);
     Bloc getBloc(long idBloc);
     List<Bloc> getAllBlocs();
+    Bloc affecterChambresABloc(List<Long> numChambre, String nomBloc);
+
+     Bloc affecterBlocAFoyer( String nomBloc, String nomFoyer) ;
+
 }

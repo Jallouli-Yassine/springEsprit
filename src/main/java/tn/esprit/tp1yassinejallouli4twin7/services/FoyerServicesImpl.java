@@ -49,4 +49,5 @@ public class FoyerServicesImpl implements IFoyerServices{
     public List<Foyer> getAllFoyer() {
         return (List<Foyer>) foyerRepository.findAll();
     }
+
 }
