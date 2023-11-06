@@ -61,7 +61,7 @@ public class FoyerServicesImpl implements IFoyerServices{
     public List<Foyer> getAllFoyer() {
         return (List<Foyer>) foyerRepository.findAll();
     }
-/*
+
     @Override
     @Transactional
     public Foyer ajouterFoyerEtAffecterAUniversite(Foyer f, Long idUniv) {
@@ -78,7 +78,5 @@ public class FoyerServicesImpl implements IFoyerServices{
 
         return f;
     }
-
- */
 
 }

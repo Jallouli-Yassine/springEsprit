@@ -20,8 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class ReservationServiceImpl implements IReservationService{
-/*
-    IReservationService reservationService;
+
     IReservationRepo reservationRepo;
     IChambreRepo chambreRepo;
     IEtudiantRepo etudiantRepo;
@@ -68,6 +67,7 @@ public class ReservationServiceImpl implements IReservationService{
         return res;
     }
 
+
     @Override
     @Transactional
     public Reservation ajouterReservation(long idChambre, long cinEtudiant) {
@@ -81,26 +81,24 @@ public class ReservationServiceImpl implements IReservationService{
         r.setEstValid(true);
 
         if(ch.getTypeC()== TypeChambre.SIMPLE && ch.getReservations().size()<1){
-            this.reservationService.ajouterReservation(r);
+            this.ajouterReservation(r);
             ch.getReservations().add(r);
             //et.getReservations().add(r);
             r.getEtudiants().add(et);
         }
 
         if(ch.getTypeC()== TypeChambre.DOUBLE && ch.getReservations().size()<2){
-            this.reservationService.ajouterReservation(r);
+            this.ajouterReservation(r);
             ch.getReservations().add(r);
             et.getReservations().add(r);
         }
 
         if(ch.getTypeC()== TypeChambre.TRIPLE && ch.getReservations().size()<3){
-            this.reservationService.ajouterReservation(r);
+            this.ajouterReservation(r);
             ch.getReservations().add(r);
             et.getReservations().add(r);
         }
 
         return r;
     }
-    */
-
 }
