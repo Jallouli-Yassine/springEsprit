@@ -12,12 +12,15 @@ import java.io.Serializable;
 public class Universite implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private long idUniversite;
 
     @OneToOne
     @JsonIgnore
+
     private Foyer foyer;
 
+    @Column(unique = true) //maneha raho lattribut unique
     private String nomUniversite;
 
     private String adresse;

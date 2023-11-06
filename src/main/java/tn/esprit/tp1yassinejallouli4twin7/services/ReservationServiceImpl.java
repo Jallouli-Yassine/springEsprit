@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Chambre;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Etudiant;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Reservation;
+import tn.esprit.tp1yassinejallouli4twin7.entities.TypeChambre;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IEtudiantRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,8 @@ import java.util.List;
 @AllArgsConstructor
 @Service
 public class ReservationServiceImpl implements IReservationService{
-
+/*
+    IReservationService reservationService;
     IReservationRepo reservationRepo;
     IChambreRepo chambreRepo;
     IEtudiantRepo etudiantRepo;
@@ -49,6 +52,12 @@ public class ReservationServiceImpl implements IReservationService{
     }
 
     @Override
+    public long getReservationParAnneeUniversitaire(Date debutAnnee, Date finAnnee) {
+        return  reservationRepo.findByDateReservationBetween(debutAnnee,finAnnee).size();
+
+    }
+
+    @Override
     @Transactional
     public Reservation ajouterReservationEtAssignerAChambreEtAEtudiant(Reservation res, Long numChambre, long cin) {
         this.ajouterReservation(res);
@@ -60,8 +69,38 @@ public class ReservationServiceImpl implements IReservationService{
     }
 
     @Override
-    public long getReservationParAnneeUniversitaire(Date debutAnnee, Date finAnnee) {
-        return  reservationRepo.findByDateReservationBetween(debutAnnee,finAnnee).size();
+    @Transactional
+    public Reservation ajouterReservation(long idChambre, long cinEtudiant) {
+        Chambre ch = chambreRepo.findById(idChambre).orElse(null);
+        Etudiant et = etudiantRepo.findEtudiantByCin(cinEtudiant);
 
+        Reservation r = new Reservation();
+        r.setNumReservation(ch.getNumeroChambre() + ch.getBloc().getNomBloc() + cinEtudiant);
+        r.setDebuteAnneUniversite(LocalDate.parse(LocalDate.now().getYear()+"-09-01"));
+        r.setFinAnneUniversite(LocalDate.parse( LocalDate.now().getYear()+1+"06-01-"));
+        r.setEstValid(true);
+
+        if(ch.getTypeC()== TypeChambre.SIMPLE && ch.getReservations().size()<1){
+            this.reservationService.ajouterReservation(r);
+            ch.getReservations().add(r);
+            //et.getReservations().add(r);
+            r.getEtudiants().add(et);
+        }
+
+        if(ch.getTypeC()== TypeChambre.DOUBLE && ch.getReservations().size()<2){
+            this.reservationService.ajouterReservation(r);
+            ch.getReservations().add(r);
+            et.getReservations().add(r);
+        }
+
+        if(ch.getTypeC()== TypeChambre.TRIPLE && ch.getReservations().size()<3){
+            this.reservationService.ajouterReservation(r);
+            ch.getReservations().add(r);
+            et.getReservations().add(r);
+        }
+
+        return r;
     }
+    */
+
 }

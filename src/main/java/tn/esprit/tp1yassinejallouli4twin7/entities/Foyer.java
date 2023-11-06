@@ -20,8 +20,7 @@ public class Foyer implements Serializable {
     private Universite u;
 
 
-    @OneToMany(mappedBy = "foyer")
-    @JsonIgnore
+    @OneToMany(mappedBy = "foyer",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     Set<Bloc> blocs;
 
     private String nomFoyer;

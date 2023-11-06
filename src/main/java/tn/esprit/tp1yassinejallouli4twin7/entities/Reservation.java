@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.Set;
 @Setter
@@ -20,6 +21,15 @@ public class Reservation implements Serializable {
     private Set<Etudiant> etudiants;
 
     private Date dateReservation;
+
+    private String numReservation;
+
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate debuteAnneUniversite;
+
+    @Temporal(TemporalType.DATE)
+    private LocalDate finAnneUniversite;
 
     private boolean estValid ;
 

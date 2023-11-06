@@ -16,12 +16,11 @@ public class Bloc implements Serializable {
     private long idBloc;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "bloc")
+    @OneToMany(mappedBy = "bloc",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     Set <Chambre> chambres;
 
-
-    @ManyToOne
     @JsonIgnore
+    @ManyToOne(cascade = {CascadeType.PERSIST})
     private Foyer foyer;
 
     private String nomBloc;
@@ -29,3 +28,7 @@ public class Bloc implements Serializable {
     private long capaciteBloc;
 
 }
+
+/*
+* fama fetch lazy w eager : el max many par deafut lazy w max one par deafut eager
+* */

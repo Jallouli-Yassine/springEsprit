@@ -11,4 +11,6 @@ public interface IFoyerServices {
     Foyer getFoyer(long idFoyer);
     List<Foyer> getAllFoyer();
 
+    //public Foyer ajouterFoyerEtAffecterAUniversite(Foyer f,Long idUniv);
+
 }

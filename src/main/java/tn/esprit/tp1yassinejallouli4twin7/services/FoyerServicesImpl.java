@@ -1,12 +1,21 @@
 package tn.esprit.tp1yassinejallouli4twin7.services;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
+import tn.esprit.tp1yassinejallouli4twin7.entities.Bloc;
+import tn.esprit.tp1yassinejallouli4twin7.entities.Universite;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IUniversiteRepo;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
 @Primary
 //@AllArgsConstructor //2eme methode mta injec de dependance  w asah wahda ( nahi l final )
 @RequiredArgsConstructor //2eme lezem el final mawjouda
@@ -15,6 +24,9 @@ public class FoyerServicesImpl implements IFoyerServices{
 
     //@Autowired 1er methode(par attribut) mta injec de dependance ama tmchy kken ala oel star tahtha
   final IFoyerRepo foyerRepository;
+  final IUniversiteRepo universiteRepo;
+  final IBlocService blocService;
+  final IBlocRepo blocRepo;
 
     //2eme methode mta injec de dependance
     /*
@@ -49,5 +61,24 @@ public class FoyerServicesImpl implements IFoyerServices{
     public List<Foyer> getAllFoyer() {
         return (List<Foyer>) foyerRepository.findAll();
     }
+/*
+    @Override
+    @Transactional
+    public Foyer ajouterFoyerEtAffecterAUniversite(Foyer f, Long idUniv) {
+        this.ajouterFoyer(f);
+
+        //ajouter bloc et affecter au foyer
+        for(Bloc b:f.getBlocs() ){
+            this.blocService.ajouterBloc(b);
+            b.setFoyer(f);
+        }
+
+        Universite u = universiteRepo.findById(idUniv).orElse(null);
+        u.setFoyer(f);
+
+        return f;
+    }
+
+ */
 
 }

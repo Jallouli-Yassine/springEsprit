@@ -14,14 +14,17 @@ public class Chambre implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idChambre;
+
     @JsonIgnore
     @ManyToOne
     private Bloc bloc;
+
     @JsonIgnore
     @OneToMany
     Set<Reservation> reservations;
 
     private long numeroChambre;
+
     private TypeChambre typeC;
 
 }

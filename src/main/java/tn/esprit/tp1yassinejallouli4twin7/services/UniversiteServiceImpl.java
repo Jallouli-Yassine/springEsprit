@@ -48,6 +48,7 @@ public class UniversiteServiceImpl implements IUniversiteService{
         u.setFoyer(foyerRepo.findById(idFoyer).orElse(null));
         return u;
     }
+    //dima naadiw id mtaa parent f fnct ajout w desafecter
 
     @Override
     @Transactional
@@ -58,6 +59,8 @@ public class UniversiteServiceImpl implements IUniversiteService{
             u.setFoyer(null);
         return u;
     }
+
+
 
 
 }

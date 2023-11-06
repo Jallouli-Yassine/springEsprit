@@ -15,6 +15,7 @@ import java.util.List;
 @RequestMapping("reservation")
 @RestController
 public class ReservationRestController {
+    /*
     private final IReservationService reservationService;
 
     @GetMapping("/all")
@@ -36,14 +37,22 @@ public class ReservationRestController {
     public void deleteReservation(@PathVariable Long idReservation){
         reservationService.supprimerReservation(idReservation);
     }
+
     @PutMapping("/ajouterReservationEtAssignerAChambreEtAEtudiant/{numChambre}/{cin}")
     public Reservation ajouterReservationEtAssignerAChambreEtAEtudiantAPI (@RequestBody Reservation res,@PathVariable Long numChambre,@PathVariable long cin){
        return reservationService.ajouterReservationEtAssignerAChambreEtAEtudiant(res,numChambre,cin);
     }
-    @GetMapping("/getReservationParAnneeUniversitaire/{debutAnnee}/{finAnnee}")
+
+
+    @PostMapping("/getReservationParAnneeUniversitaire/{debutAnnee}/{finAnnee}")
     public long getReservationParAnneeUniversitaireApi(@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)Date debutAnnee,@PathVariable @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date finAnnee ){
        return reservationService.getReservationParAnneeUniversitaire(debutAnnee,finAnnee);
     }
 
+    @PutMapping("/ajouterReservation/{idChambre}/{cinEtudiant}")
+    public Reservation ajouterReservationApi(@PathVariable long idChambre,@PathVariable long cinEtudiant){
+       return reservationService.ajouterReservation(idChambre,cinEtudiant);
+    }
+*/
 
 }
