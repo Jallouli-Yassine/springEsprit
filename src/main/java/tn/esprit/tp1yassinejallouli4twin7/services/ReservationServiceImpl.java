@@ -101,4 +101,21 @@ public class ReservationServiceImpl implements IReservationService{
 
         return r;
     }
+
+    @Transactional
+    @Override
+    public Reservation annulerReservation(long cinEtudiant) {
+        Etudiant e = etudiantRepo.findEtudiantByCin(cinEtudiant);
+        List<Reservation> r = reservationRepo.findByEtudiants(e);
+        for (Reservation res : r) {
+            Chambre ch = chambreRepo.findChambreByReservations(res);
+            ch.getReservations().remove(res);
+            res.getEtudiants().remove(e);
+            res.setEstValid(false);
+            reservationRepo.save(res);
+        }
+        return null;
+    }
+
+
 }

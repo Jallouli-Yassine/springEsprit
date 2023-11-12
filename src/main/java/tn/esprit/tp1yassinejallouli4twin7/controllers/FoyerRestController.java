@@ -38,7 +38,7 @@ public class FoyerRestController {
     public void deleteFoyer(@PathVariable Long idFoyer){
          foyerServices.supprimerFoyer(idFoyer);
     }
-    @GetMapping ("/ajouterFoyerEtAffecterAUniversite/{idUniv}")
+    @PutMapping ("/ajouterFoyerEtAffecterAUniversite/{idUniv}")
     public void ajouterFoyerEtAffecterAUniversiteApi(@RequestBody Foyer f,@PathVariable Long idUniv){
          foyerServices.ajouterFoyerEtAffecterAUniversite(f,idUniv);
     }

@@ -74,6 +74,7 @@ public class FoyerServicesImpl implements IFoyerServices{
         }
 
         Universite u = universiteRepo.findById(idUniv).orElse(null);
+        assert u != null;
         u.setFoyer(f);
 
         return f;
