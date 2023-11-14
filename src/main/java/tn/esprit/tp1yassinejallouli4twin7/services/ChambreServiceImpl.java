@@ -1,5 +1,8 @@
 package tn.esprit.tp1yassinejallouli4twin7.services;
 
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.entities.*;
@@ -8,6 +11,7 @@ import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
 
+import javax.management.Query;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +23,8 @@ public class ChambreServiceImpl implements IChambreService{
     IBlocRepo blocRepo;
     IFoyerRepo foyerRepo;
     IReservationRepo reservationRepo;
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Override
     public Chambre ajouterChambre(Chambre ch) {
@@ -74,5 +80,9 @@ public class ChambreServiceImpl implements IChambreService{
         });
         return NonResChambreList;
     }
+    @Override
+    public List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC) {
+        Bloc b = blocRepo.findById(idBloc).orElse(null);
 
+        return  chambreRepo.findByBlocAndTypeC(b,typeC);  }
 }

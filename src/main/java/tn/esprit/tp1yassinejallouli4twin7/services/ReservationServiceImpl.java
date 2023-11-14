@@ -13,6 +13,7 @@ import tn.esprit.tp1yassinejallouli4twin7.repositories.IEtudiantRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -76,24 +77,23 @@ public class ReservationServiceImpl implements IReservationService{
 
         Reservation r = new Reservation();
         r.setNumReservation(ch.getNumeroChambre() + ch.getBloc().getNomBloc() + cinEtudiant);
-        r.setDebuteAnneUniversite(LocalDate.parse(LocalDate.now().getYear()+"-09-01"));
-        r.setFinAnneUniversite(LocalDate.parse( LocalDate.now().getYear()+1+"06-01-"));
+        r.setDebuteAnneUniversite(LocalDate.parse(LocalDate.now().getYear() + "-09-01"));
+        r.setFinAnneUniversite(LocalDate.parse(LocalDate.now().getYear() + 1 + "-06-01"));
         r.setEstValid(true);
 
-        if(ch.getTypeC()== TypeChambre.SIMPLE && ch.getReservations().size()<1){
-            this.ajouterReservation(r);
-            ch.getReservations().add(r);
-            //et.getReservations().add(r);
-            r.getEtudiants().add(et);
-        }
-
-        if(ch.getTypeC()== TypeChambre.DOUBLE && ch.getReservations().size()<2){
+        if (ch.getTypeC() == TypeChambre.SIMPLE && ch.getReservations().isEmpty()) {
             this.ajouterReservation(r);
             ch.getReservations().add(r);
             et.getReservations().add(r);
         }
 
-        if(ch.getTypeC()== TypeChambre.TRIPLE && ch.getReservations().size()<3){
+        if (ch.getTypeC() == TypeChambre.DOUBLE && ch.getReservations().size() < 2) {
+            this.ajouterReservation(r);
+            ch.getReservations().add(r);
+            et.getReservations().add(r);
+        }
+
+        if (ch.getTypeC() == TypeChambre.TRIPLE && ch.getReservations().size() < 3) {
             this.ajouterReservation(r);
             ch.getReservations().add(r);
             et.getReservations().add(r);
@@ -106,14 +106,25 @@ public class ReservationServiceImpl implements IReservationService{
     @Override
     public Reservation annulerReservation(long cinEtudiant) {
         Etudiant e = etudiantRepo.findEtudiantByCin(cinEtudiant);
-        List<Reservation> r = reservationRepo.findByEtudiants(e);
-        for (Reservation res : r) {
+
+
+        List<Reservation> resList = new ArrayList<>(e.getReservations());
+
+        for (Reservation res : resList) {
             Chambre ch = chambreRepo.findChambreByReservations(res);
+
+            // Remove associations
             ch.getReservations().remove(res);
             res.getEtudiants().remove(e);
+
+            // Update reservation state
             res.setEstValid(false);
             reservationRepo.save(res);
+
+            // Remove reservation from the original list
+            e.getReservations().remove(res);
         }
+
         return null;
     }
 

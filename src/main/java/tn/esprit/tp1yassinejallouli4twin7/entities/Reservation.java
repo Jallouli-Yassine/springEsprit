@@ -16,8 +16,9 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
+
     @JsonIgnore
-    @ManyToMany(mappedBy = "reservations")
+    @ManyToMany(mappedBy = "reservations",fetch = FetchType.EAGER)
     private Set<Etudiant> etudiants;
 
     private Date dateReservation;

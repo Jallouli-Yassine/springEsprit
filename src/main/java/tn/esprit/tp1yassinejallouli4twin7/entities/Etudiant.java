@@ -18,7 +18,7 @@ public class Etudiant implements Serializable {
     private long idEtudiant;
 
     @JsonIgnore
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set <Reservation> reservations;
 
     private String nomEt;

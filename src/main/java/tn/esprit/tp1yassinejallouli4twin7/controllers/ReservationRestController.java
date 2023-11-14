@@ -50,5 +50,10 @@ public class ReservationRestController {
        return reservationService.ajouterReservation(idChambre,cinEtudiant);
     }
 
+    @PutMapping("/annulerReservation/{cinEtudiant}")
+    public Reservation annulerReservationApi(@PathVariable long cinEtudiant){
+       return reservationService.annulerReservation(cinEtudiant);
+    }
+
 
 }
