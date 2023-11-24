@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.util.Set;
+
 @Setter
 @Getter
 @Entity
@@ -24,5 +26,8 @@ public class Universite implements Serializable {
     private String nomUniversite;
 
     private String adresse;
+
+    @OneToMany(mappedBy = "universite",fetch = FetchType.EAGER)
+    Set<Prof> professeurs;
 
 }

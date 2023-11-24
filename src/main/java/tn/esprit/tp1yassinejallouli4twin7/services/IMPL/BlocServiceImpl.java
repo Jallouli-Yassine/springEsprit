@@ -1,4 +1,4 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -10,6 +10,7 @@ import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IBlocService;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -19,7 +20,7 @@ import java.util.Set;
 @Primary
 @AllArgsConstructor
 @Service
-public class BlocServiceImpl implements IBlocService{
+public class BlocServiceImpl implements IBlocService {
     IBlocRepo blocRepo;
     IChambreRepo chambreRepo;
     IFoyerRepo foyerRepo;

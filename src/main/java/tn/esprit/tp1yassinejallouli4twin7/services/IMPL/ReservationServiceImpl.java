@@ -1,4 +1,4 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -11,6 +11,7 @@ import tn.esprit.tp1yassinejallouli4twin7.entities.TypeChambre;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IEtudiantRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IReservationService;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -20,7 +21,7 @@ import java.util.List;
 @Primary
 @AllArgsConstructor
 @Service
-public class ReservationServiceImpl implements IReservationService{
+public class ReservationServiceImpl implements IReservationService {
 
     IReservationRepo reservationRepo;
     IChambreRepo chambreRepo;

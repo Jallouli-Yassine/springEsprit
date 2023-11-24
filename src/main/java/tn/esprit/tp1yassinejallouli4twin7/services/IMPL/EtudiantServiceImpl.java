@@ -1,15 +1,16 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Etudiant;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IEtudiantRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IEtudiantService;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class EtudiantServiceImpl implements IEtudiantService{
+public class EtudiantServiceImpl implements IEtudiantService {
 
     IEtudiantRepo etudiantRepo;
 

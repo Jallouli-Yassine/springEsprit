@@ -1,4 +1,4 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
@@ -10,6 +10,7 @@ import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IChambreRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IReservationRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IChambreService;
 
 import javax.management.Query;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class ChambreServiceImpl implements IChambreService{
+public class ChambreServiceImpl implements IChambreService {
 
     IChambreRepo chambreRepo;
     IBlocRepo blocRepo;

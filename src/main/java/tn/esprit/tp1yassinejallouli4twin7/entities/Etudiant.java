@@ -31,4 +31,5 @@ public class Etudiant implements Serializable {
 
     private Date dateNaissance;
 
+
 }

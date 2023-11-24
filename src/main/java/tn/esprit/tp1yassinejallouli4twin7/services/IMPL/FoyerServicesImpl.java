@@ -1,4 +1,4 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +10,8 @@ import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IUniversiteRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IBlocService;
+import tn.esprit.tp1yassinejallouli4twin7.services.IFoyerServices;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -20,7 +22,7 @@ import java.util.Set;
 //@AllArgsConstructor //2eme methode mta injec de dependance  w asah wahda ( nahi l final )
 @RequiredArgsConstructor //2eme lezem el final mawjouda
 @Service
-public class FoyerServicesImpl implements IFoyerServices{
+public class FoyerServicesImpl implements IFoyerServices {
 
     //@Autowired 1er methode(par attribut) mta injec de dependance ama tmchy kken ala oel star tahtha
   final IFoyerRepo foyerRepository;

@@ -7,15 +7,15 @@ import lombok.Setter;
 
 import java.io.Serializable;
 import java.util.Set;
-@Setter
-@Getter
-@Entity
+    @Setter
+    @Getter
+    @Entity
 public class Bloc implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idBloc;
 
-    @JsonIgnore
+
     @OneToMany(mappedBy = "bloc",fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST,CascadeType.REMOVE})
     Set <Chambre> chambres;
 

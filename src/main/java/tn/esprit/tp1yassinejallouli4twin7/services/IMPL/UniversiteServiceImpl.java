@@ -1,4 +1,4 @@
-package tn.esprit.tp1yassinejallouli4twin7.services;
+package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 
 import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
@@ -7,12 +7,13 @@ import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Universite;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IUniversiteRepo;
+import tn.esprit.tp1yassinejallouli4twin7.services.IUniversiteService;
 
 import java.util.List;
 
 @AllArgsConstructor
 @Service
-public class UniversiteServiceImpl implements IUniversiteService{
+public class UniversiteServiceImpl implements IUniversiteService {
 
     IUniversiteRepo universiteRepo;
     IFoyerRepo foyerRepo;
