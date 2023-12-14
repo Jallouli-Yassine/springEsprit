@@ -3,20 +3,21 @@ package tn.esprit.tp1yassinejallouli4twin7.services.IMPL;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Primary;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Bloc;
+import tn.esprit.tp1yassinejallouli4twin7.entities.Restaurant;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Universite;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IBlocRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IFoyerRepo;
 import tn.esprit.tp1yassinejallouli4twin7.entities.Foyer;
+import tn.esprit.tp1yassinejallouli4twin7.repositories.IRestoRepo;
 import tn.esprit.tp1yassinejallouli4twin7.repositories.IUniversiteRepo;
 import tn.esprit.tp1yassinejallouli4twin7.services.IBlocService;
 import tn.esprit.tp1yassinejallouli4twin7.services.IFoyerServices;
 
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Primary
 //@AllArgsConstructor //2eme methode mta injec de dependance  w asah wahda ( nahi l final )
@@ -29,12 +30,18 @@ public class FoyerServicesImpl implements IFoyerServices {
   final IUniversiteRepo universiteRepo;
   final IBlocService blocService;
   final IBlocRepo blocRepo;
+  final IRestoRepo restoRepo;
 
     //2eme methode mta injec de dependance
     /*
     public FoyerServicesImpl(IFoyerRepository foyerRepository) {
         this.foyerRepository = foyerRepository;
     }*/
+
+    @Override
+    public Page<Foyer> getAllFoyerWP(Pageable pageable) {
+        return foyerRepository.findAll(pageable);
+    }
 
     @Override
     public Foyer ajouterFoyer(Foyer f) {
@@ -61,7 +68,7 @@ public class FoyerServicesImpl implements IFoyerServices {
 
     @Override
     public List<Foyer> getAllFoyer() {
-        return (List<Foyer>) foyerRepository.findAll();
+        return  foyerRepository.findAll();
     }
 
     @Override
@@ -76,10 +83,38 @@ public class FoyerServicesImpl implements IFoyerServices {
         }
 
         Universite u = universiteRepo.findById(idUniv).orElse(null);
+
         assert u != null;
         u.setFoyer(f);
 
         return f;
     }
+
+
+
+    @Override
+    @Transactional
+    public Foyer ajouterFoyerEtAffecterAResto(Foyer f, long idResto) {
+        this.ajouterFoyer(f);
+        Restaurant r = restoRepo.findById(idResto).orElse(null);
+        f.setResto(r);
+        return f;
+    }
+
+
+    @Override
+    @Transactional
+    public Foyer desaffecterFoyerAResto(long idFoyer, long idResto) {
+        Foyer f = foyerRepository.findById(idFoyer).orElse(null);
+
+        if(f!=null && f.getResto().getIdResto() == idResto){
+            f.setResto(null);
+        }
+        return f;
+    }
+
+
+
+
 
 }

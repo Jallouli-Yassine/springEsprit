@@ -85,5 +85,15 @@ public class ChambreServiceImpl implements IChambreService {
     public List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC) {
         Bloc b = blocRepo.findById(idBloc).orElse(null);
 
-        return  chambreRepo.findByBlocAndTypeC(b,typeC);  }
+        return  chambreRepo.findByBlocchambreAndTypeC(b,typeC);  }
+
+    @Override
+    public List<Chambre>getChambresNonAffecter(){
+        return chambreRepo.findChambreNonAffecter();
+    }
+
+    @Override
+    public Chambre getChambreParId(long id) {
+        return chambreRepo.findById(id).orElse(null);
+    }
 }

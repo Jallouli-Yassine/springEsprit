@@ -12,6 +12,14 @@ public interface IBlocService {
     List<Bloc> getAllBlocs();
     Bloc affecterChambresABloc(List<Long> numChambre, String nomBloc);
 
-     Bloc affecterBlocAFoyer( String nomBloc, String nomFoyer) ;
+
+
+    List<Bloc> getAllblocsWithFoyer();
+
+    Bloc affecterBlocAFoyer( String nomBloc, String nomFoyer) ;
+
+    Bloc getBlocById (long idBloc);
+
+    Bloc getBlocByNom(String nomBloc);
 
 }

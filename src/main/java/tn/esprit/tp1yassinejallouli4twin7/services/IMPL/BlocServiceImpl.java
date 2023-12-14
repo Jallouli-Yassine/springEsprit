@@ -57,7 +57,7 @@ public class BlocServiceImpl implements IBlocService {
         for (Long num : numChambre) {
             Chambre ch = chambreRepo.findChambreByNumeroChambre(num);
             if (ch != null) {
-                ch.setBloc(b);
+                ch.setBlocchambre(b);
             }
         }
         return b;
@@ -71,10 +71,26 @@ public class BlocServiceImpl implements IBlocService {
 
         if(b!=null && f!=null){
             b.setFoyer(f);
-             return b;
+            return b;
         }
         return  null;
 
+    }
+
+    @Override
+    public List<Bloc> getAllblocsWithFoyer() {
+        return blocRepo.findAllWithFoyer();
+    }
+
+
+    @Override
+    public Bloc getBlocById(long idBloc) {
+        return blocRepo.getBlocByIdBloc(idBloc);
+    }
+
+    @Override
+    public Bloc getBlocByNom(String nomBloc) {
+        return blocRepo.getBlocByNomBloc(nomBloc);
     }
 
 }

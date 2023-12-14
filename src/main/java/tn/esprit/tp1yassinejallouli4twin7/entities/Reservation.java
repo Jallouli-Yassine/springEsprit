@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Date;
@@ -16,10 +17,6 @@ public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idReservation;
-
-    @JsonIgnore
-    @ManyToMany(mappedBy = "reservations",fetch = FetchType.EAGER)
-    private Set<Etudiant> etudiants;
 
     private Date dateReservation;
 
@@ -34,4 +31,30 @@ public class Reservation implements Serializable {
 
     private boolean estValid ;
 
+
+    /*nejd*/
+
+
+
+    @Temporal(TemporalType.DATE)
+    private Date anneeUniversitaire;
+
+    private String description;
+
+    private String email;
+
+    private String phone;
+
+    @Enumerated(EnumType.STRING)
+    private EtatReservation etat;
+
+    @Enumerated(EnumType.STRING)
+    private TypePayment typePayment;
+
+    @Enumerated(EnumType.STRING)
+    private TypeRepat typeRepat;
+
+    @JsonIgnore
+    @ManyToMany
+    private Set<Etudiant> etudiants;
 }

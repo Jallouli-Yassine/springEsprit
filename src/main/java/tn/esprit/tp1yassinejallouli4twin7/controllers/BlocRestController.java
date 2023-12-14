@@ -11,6 +11,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("bloc")
 @RestController
+@CrossOrigin(origins = "*")
 public class BlocRestController {
 
     private final IBlocService blocService;
@@ -43,6 +44,17 @@ public class BlocRestController {
     @PutMapping("/affecterBlocAFoyerApi/{nomBloc}/{nomFoyer}")
     public Bloc affecterBlocAFoyerApi( @PathVariable String nomBloc,@PathVariable String nomFoyer){
         return blocService.affecterBlocAFoyer(nomBloc,nomFoyer);
+    }
+
+
+    @GetMapping("/{idBloc}")
+    public Bloc getBlocById(@PathVariable Long idBloc) {
+        return blocService.getBlocById(idBloc);
+    }
+
+    @GetMapping("getbyNom/{nomBloc}")
+    public Bloc getBlocByNom(@PathVariable String nomBloc) {
+        return blocService.getBlocByNom(nomBloc);
     }
 
 

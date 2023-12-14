@@ -11,16 +11,18 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class LoggingAspect {
-    @Before(" execution(* tn.esprit.tp1yassinejallouli4twin7.services.IMPL.EtudiantServiceImpl.*(..)) ")
+    @Before("execution(* tn.esprit.tp1yassinejallouli4twin7.services.IMPL.*.get*(..))")
     public void logMethodEntry(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
-        log.info("In method " + name + " : ");
+        log.error("In method " + name + " : ");
     }
-
-    @After(" execution(* tn.esprit.tp1yassinejallouli4twin7.services.IMPL.EtudiantServiceImpl.*(..)) ")
+//"execution(Modifiers-pattern? Ret-type-pattern Declaring-type-pattern?Name-
+//pattern(param-pattern) Throws-pattern?)"
+    //"execution(*.* tn.esprit.tp1yassinejallouli4twin7.services.IMPL.*.*(..)) "
+    @After(" execution(* tn.esprit.tp1yassinejallouli4twin7.services.IMPL.*.sett*(..)) ")
     public void logMethodExit(JoinPoint joinPoint) {
         String name = joinPoint.getSignature().getName();
-        log.info("Out of method " + name + " : ");
+        log.warn("Out of method " + name + " : ");
     }
 
 }

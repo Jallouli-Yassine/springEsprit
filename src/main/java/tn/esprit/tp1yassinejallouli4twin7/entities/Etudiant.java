@@ -17,13 +17,9 @@ public class Etudiant implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long idEtudiant;
 
-    @JsonIgnore
-    @ManyToMany(fetch = FetchType.EAGER)
-    private Set <Reservation> reservations;
-
     private String nomEt;
 
-    private String prenomEt;
+    private String prenomet;
 
     private long cin;
 
@@ -31,5 +27,15 @@ public class Etudiant implements Serializable {
 
     private Date dateNaissance;
 
+    private String email;
 
+    private String passoword;
+
+    private long etat;
+
+    private String role;
+
+    @JsonIgnore
+    @ManyToMany(cascade = {CascadeType.PERSIST},fetch = FetchType.EAGER)
+    private Set<Reservation> reservations;
 }

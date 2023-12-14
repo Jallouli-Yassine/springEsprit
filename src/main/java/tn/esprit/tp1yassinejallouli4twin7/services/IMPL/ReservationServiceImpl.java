@@ -77,7 +77,7 @@ public class ReservationServiceImpl implements IReservationService {
         Etudiant et = etudiantRepo.findEtudiantByCin(cinEtudiant);
 
         Reservation r = new Reservation();
-        r.setNumReservation(ch.getNumeroChambre() + ch.getBloc().getNomBloc() + cinEtudiant);
+        r.setNumReservation(ch.getNumeroChambre() + ch.getBlocchambre().getNomBloc() + cinEtudiant);
         r.setDebuteAnneUniversite(LocalDate.parse(LocalDate.now().getYear() + "-09-01"));
         r.setFinAnneUniversite(LocalDate.parse(LocalDate.now().getYear() + 1 + "-06-01"));
         r.setEstValid(true);

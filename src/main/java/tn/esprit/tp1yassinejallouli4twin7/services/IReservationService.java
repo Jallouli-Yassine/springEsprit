@@ -15,4 +15,5 @@ public interface IReservationService {
     long getReservationParAnneeUniversitaire(Date debutAnnee, Date finAnnee);
     Reservation ajouterReservation(long idChambre,long cinEtudiant);
     Reservation annulerReservation(long cinEtudiant);
+
 }

@@ -15,4 +15,11 @@ public interface IChambreService {
     long nbChambreParTypeEtBloc(TypeChambre type, long idBloc) ;
     List<Chambre> getChambresNonReserveParNomFoyerEtTypeChambre( String nomFoyer,TypeChambre type);
     List<Chambre> getChambresParBlocEtType(long idBloc, TypeChambre typeC);
+
+    List<Chambre>getChambresNonAffecter();
+
+    /*kamel*/
+
+    Chambre getChambreParId(long id);
+
 }
